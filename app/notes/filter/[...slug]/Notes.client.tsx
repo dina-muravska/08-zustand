@@ -29,7 +29,7 @@ export default function NotesClient({ category }: NotesClientProps) {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, isSuccess } = useQuery({
     queryKey: ["notes", page, debouncedSearch, category],
     queryFn: () => fetchNotes({ page, search: debouncedSearch, tag: category }),
     placeholderData: keepPreviousData,
@@ -49,11 +49,11 @@ export default function NotesClient({ category }: NotesClientProps) {
             setPage(1);
           }}
         />
-        {data.totalPages > 1 && (
+        {isSuccess && data.totalPages > 1 && (
           <Pagination
+            totalPages={data?.totalPages}
             currentPage={page}
-            totalPages={data.totalPages}
-            onPageChange={setPage}
+            onPageChange={(page) => setPage(page)}
           />
         )}
         <button className={css.button} onClick={() => setIsOpen(true)}>
