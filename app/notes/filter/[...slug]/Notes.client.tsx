@@ -41,25 +41,27 @@ export default function NotesClient({ category }: NotesClientProps) {
 
   return (
     <div className={css.app}>
-      <SearchBox
-        value={search}
-        onSearch={(value) => {
-          setSearch(value);
-          setPage(1);
-        }}
-      />
-      <button className={css.button} onClick={() => setIsOpen(true)}>
-        Create note
-      </button>
+      <header className={css.toolbar}>
+        <SearchBox
+          value={search}
+          onSearch={(value) => {
+            setSearch(value);
+            setPage(1);
+          }}
+        />
+        {data.totalPages > 1 && (
+          <Pagination
+            currentPage={page}
+            totalPages={data.totalPages}
+            onPageChange={setPage}
+          />
+        )}
+        <button className={css.button} onClick={() => setIsOpen(true)}>
+          Create note
+        </button>
+      </header>
       {data.notes.length > 0 && <NoteList notes={data.notes} />}
       {data.notes.length === 0 && <p>No notes found</p>}
-      {data.totalPages > 1 && (
-        <Pagination
-          currentPage={page}
-          totalPages={data.totalPages}
-          onPageChange={setPage}
-        />
-      )}
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
           <NoteForm onClose={() => setIsOpen(false)} />
