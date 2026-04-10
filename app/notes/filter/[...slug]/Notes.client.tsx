@@ -57,7 +57,6 @@ export default function NotesClient({ category }: NotesClientProps) {
           />
         )}
         <Link href="/notes/action/create" className={css.button}>
-          {" "}
           Create note +
         </Link>
       </header>
