@@ -29,7 +29,7 @@ export async function generateMetadata({
       ? `${String(note.content).slice(0, 150).replace(/\n/g, " ")}...`
       : "View details of the note.";
 
-    // const url = `${SITE_URL}notes/${id}`;
+    const url = `https://08-zustand-phi-hazel-44.vercel.app/notes/${id}`;
 
     return {
       title,
@@ -37,7 +37,7 @@ export async function generateMetadata({
       openGraph: {
         title,
         description,
-        // url,
+        url,
         images: [
           {
             url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
@@ -51,7 +51,7 @@ export async function generateMetadata({
   } catch (err) {
     const title = "Note — Not found";
     const description = "The requested note could not be loaded.";
-    // const url = `${SITE_URL}notes/${id}`;
+    const url = `https://08-zustand-phi-hazel-44.vercel.app/notes/${id}`;
 
     return {
       title,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       openGraph: {
         title,
         description,
-        // url,
+        url,
         images: [
           {
             url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",

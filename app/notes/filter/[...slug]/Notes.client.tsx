@@ -18,8 +18,6 @@ export default function NotesClient({ category }: NotesClientProps) {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
-  const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
@@ -34,8 +32,6 @@ export default function NotesClient({ category }: NotesClientProps) {
     placeholderData: keepPreviousData,
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
   if (!data) return <p>No data</p>;
 
   return (
@@ -61,7 +57,7 @@ export default function NotesClient({ category }: NotesClientProps) {
       </header>
       {isLoading && <Loading />}
       {isError && <Error error={error} />}
-      {data.notes.length > 0 && <NoteList notes={data.notes} />}
+      {data && <NoteList notes={data.notes} />}
       {data.notes.length === 0 && <p>No notes found</p>}
     </div>
   );

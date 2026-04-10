@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "NoteHub",
     description:
       "NoteHub is a modern and intuitive note-taking application designed to help you capture ideas, manage tasks, and stay organized effortlessly. Create, edit, and delete notes with ease, search through your content instantly, and keep all your important thoughts in one secure and accessible place.",
-    // url: `https://notehub.com/notes/${id}`,
+    url: `https://08-zustand-phi-hazel-44.vercel.app/`,
     siteName: "NoteHub",
     images: [
       {

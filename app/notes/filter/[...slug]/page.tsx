@@ -32,7 +32,7 @@ export async function generateMetadata({
       ? "Browse all notes."
       : `Notes filtered by "${category}".`;
 
-  // const url = `${SITE_URL}notes/${rawCategory}`;
+  const url = `https://08-zustand-phi-hazel-44.vercel.app/notes/${rawCategory}`;
 
   return {
     title,
@@ -41,7 +41,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      // url,
+      url,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
