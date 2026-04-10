@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api";
@@ -56,9 +56,10 @@ export default function NotesClient({ category }: NotesClientProps) {
             onPageChange={(page) => setPage(page)}
           />
         )}
-        <button className={css.button} onClick={() => setIsOpen(true)}>
-          Create note
-        </button>
+        <Link href="/notes/action/create" className={css.button}>
+          {" "}
+          Create note +
+        </Link>
       </header>
       {data.notes.length > 0 && <NoteList notes={data.notes} />}
       {data.notes.length === 0 && <p>No notes found</p>}
