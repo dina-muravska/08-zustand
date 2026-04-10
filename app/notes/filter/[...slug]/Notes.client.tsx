@@ -11,9 +11,9 @@ import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
 
 interface NotesClientProps {
-  category: string | undefined;
+  tag: string | undefined;
 }
-export default function NotesClient({ category }: NotesClientProps) {
+export default function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -27,8 +27,8 @@ export default function NotesClient({ category }: NotesClientProps) {
   }, [search]);
 
   const { data, isLoading, error, isSuccess, isError } = useQuery({
-    queryKey: ["notes", page, debouncedSearch, category],
-    queryFn: () => fetchNotes({ page, search: debouncedSearch, tag: category }),
+    queryKey: ["notes", page, debouncedSearch, tag],
+    queryFn: () => fetchNotes({ page, search: debouncedSearch, tag: tag }),
     placeholderData: keepPreviousData,
   });
 
@@ -57,7 +57,7 @@ export default function NotesClient({ category }: NotesClientProps) {
       </header>
       {isLoading && <Loading />}
       {isError && <Error error={error} />}
-      {data && <NoteList notes={data.notes} />}
+      {data.notes.length > 0 && <NoteList notes={data.notes} />}
       {data.notes.length === 0 && <p>No notes found</p>}
     </div>
   );
