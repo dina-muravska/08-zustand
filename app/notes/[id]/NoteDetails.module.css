@@ -1,3 +1,7 @@
+.main {
+  flex: 1;
+}
+
 .container {
   max-width: 800px;
   margin: 32px auto;
@@ -36,7 +40,7 @@
 
 .date {
   font-size: 14px;
-  color: #888;
+  color: #444;
   text-align: right;
 }
 
@@ -52,4 +56,17 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.backBtn {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  background-color: transparent;
 }

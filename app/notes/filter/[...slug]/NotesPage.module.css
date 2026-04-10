@@ -3,6 +3,7 @@
   max-width: 1280px;
   margin: 0px auto;
   padding: 0 16px 16px;
+  flex: 1;
 }
 
 .toolbar {
