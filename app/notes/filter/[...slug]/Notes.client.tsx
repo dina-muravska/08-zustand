@@ -4,11 +4,10 @@ import { useState, useEffect } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api";
 import css from "./NotesPage.module.css";
-
+import Error from "./error";
+import Loading from "@/app/loading";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
-import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import SearchBox from "@/components/SearchBox/SearchBox";
 
 interface NotesClientProps {
@@ -29,7 +28,7 @@ export default function NotesClient({ category }: NotesClientProps) {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const { data, isLoading, error, isSuccess } = useQuery({
+  const { data, isLoading, error, isSuccess, isError } = useQuery({
     queryKey: ["notes", page, debouncedSearch, category],
     queryFn: () => fetchNotes({ page, search: debouncedSearch, tag: category }),
     placeholderData: keepPreviousData,
@@ -60,13 +59,10 @@ export default function NotesClient({ category }: NotesClientProps) {
           Create note +
         </Link>
       </header>
+      {isLoading && <Loading />}
+      {isError && <Error error={error} />}
       {data.notes.length > 0 && <NoteList notes={data.notes} />}
       {data.notes.length === 0 && <p>No notes found</p>}
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <NoteForm onClose={() => setIsOpen(false)} />
-        </Modal>
-      )}
     </div>
   );
 }
